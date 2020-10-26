@@ -6,13 +6,11 @@ public class Ring : MonoBehaviour
 {
     private void Awake()
     {
-        // TODO LeanTween
+        LeanTween.scale(gameObject, Vector3.one * 1.3f, 2f).setEaseInOutQuad().setLoopPingPong().setDelay(Random.Range(0f, 4f));
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Debug.Log(other.tag);
-
         if (other.CompareTag("Player"))
         {
             RingSpawner.Instance.spawnRing(transform.position, gameObject);

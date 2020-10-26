@@ -793,7 +793,7 @@ MonoBehaviour:
   distanceToNextRing: 40
   rotationTolerance: 30
   positionTolerance: 5
-  maxCurrentRings: 3
+  maxCurrentRings: 2
   rings: []
 --- !u!1001 &1140149518
 PrefabInstance:

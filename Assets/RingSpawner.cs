@@ -20,8 +20,9 @@ public class RingSpawner : MonoBehaviour
 
     public void spawnRing(Vector3 oldPos, GameObject ring)
     {
-        float rot = UnityEngine.Random.Range(-rotationTolerance, rotationTolerance);
 
+        // Random Rotation
+        float rot = UnityEngine.Random.Range(-rotationTolerance, rotationTolerance);
 
         // Check if all rings are Spawned -> Init()
         if (rings.Count < maxCurrentRings) rings.Add(Instantiate(ringPF, oldPos, Quaternion.Euler(rot, rot, rot), gameObject.transform));
@@ -52,6 +53,9 @@ public class RingSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawn the Rings
+    /// </summary>
     public void Init()
     {
         for (int i = 0; i < maxCurrentRings; i++)
