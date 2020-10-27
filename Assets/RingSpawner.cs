@@ -42,14 +42,35 @@ public class RingSpawner : MonoBehaviour
                 }
             }
 
-            // Set new Rotation
-            ring.transform.rotation = Quaternion.Euler(rings[idx].transform.rotation.x + rot, rings[idx].transform.rotation.y + rot, rings[idx].transform.rotation.z + rot);
-
             // Set New Position 
             Vector3 pos = rings[idx].transform.position + (Vector3.forward * distanceToNextRing);
 
             // Add Random ratio
             ring.transform.position = new Vector3(pos.x + UnityEngine.Random.Range(-positionTolerance, positionTolerance), pos.y + UnityEngine.Random.Range(-positionTolerance, positionTolerance), pos.z + UnityEngine.Random.Range(-positionTolerance, positionTolerance));
+
+            // Set new Rotation
+            List<float> distList = new List<float>();
+
+            // Get all Distance
+            foreach (GameObject r in rings)
+            {
+                    distList.Add(Vector3.Distance(r.transform.position, rings[idx].transform.position));
+            }
+
+            // Find closest Ring
+            int _idx = -1;
+
+            foreach (float f in distList)
+            {
+                if (f > 0)
+                {
+                    if (_idx == -1) _idx = distList.IndexOf(f);
+                    if (distList[_idx] > f) _idx = distList.IndexOf(f);
+                }
+            }
+
+            // Look at Clostest Ring
+            ring.transform.LookAt(rings[_idx].transform);
         }
     }
 
