@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 
     [HideInInspector] public Text Monitor;
 
+    public GameObject AsteroidTemp;
+    
 
     private void Awake () {
         Monitor = GameObject.Find("Canvas/Text").GetComponent<Text>();
@@ -33,5 +35,8 @@ public class PlayerController : MonoBehaviour {
                        "Pitch: " + pitch + "\n" +
                        "Roll: " + roll + "\n" +
                        "Speed: " + speed;
+        
+        if(Input.GetKeyDown(KeyCode.O))
+            Destroy(AsteroidTemp);
     }
 }
