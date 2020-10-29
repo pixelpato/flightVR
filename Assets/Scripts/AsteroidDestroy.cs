@@ -33,20 +33,6 @@ public class AsteroidDestroy : MonoBehaviour
             }
             Destroy(t.gameObject,5f);
         }
-        
-        
-        
-        
-        
-        // //explosion velocity
-        // Vector3 explosionPos = fracturedStone.transform.position;
-        // Collider[] colliders = Physics.OverlapSphere(explosionPos, Radius);
-        // foreach (Collider hit in colliders)
-        // {
-        //     Rigidbody rb = hit.GetComponent<Rigidbody>();
-        //
-        //     if (rb != null)
-        //         rb.AddExplosionForce(Power, explosionPos, Radius, 3.0F);
-        // }
+        Destroy(fracturedStone,5f);
     }
 }

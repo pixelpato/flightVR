@@ -35,8 +35,10 @@ public class PlayerController : MonoBehaviour {
                        "Pitch: " + pitch + "\n" +
                        "Roll: " + roll + "\n" +
                        "Speed: " + speed;
-        
-        if(Input.GetKeyDown(KeyCode.O))
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
             Destroy(AsteroidTemp);
+        }
     }
 }
