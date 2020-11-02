@@ -776,18 +776,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1710102379, guid: b9b0d592f906eaa46917203cb34b8d39, type: 3}
-      propertyPath: maxSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1710102379, guid: b9b0d592f906eaa46917203cb34b8d39, type: 3}
-      propertyPath: minSpeed
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1710102379, guid: b9b0d592f906eaa46917203cb34b8d39, type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4084005133533761850, guid: b9b0d592f906eaa46917203cb34b8d39, type: 3}
       propertyPath: AsteroidTemp
       value: 
@@ -849,6 +837,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4768112549026949416, guid: 8fdd050733817fa4088232f75e0afc80, type: 3}
+      propertyPath: distanceToNextRing
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4768112549026949417, guid: 8fdd050733817fa4088232f75e0afc80, type: 3}
       propertyPath: m_Name
       value: Ring Spawner
