@@ -957,6 +957,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4768112549026949416, guid: 8fdd050733817fa4088232f75e0afc80, type: 3}
+      propertyPath: distanceToNextRing
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4768112549026949417, guid: 8fdd050733817fa4088232f75e0afc80, type: 3}
       propertyPath: m_Name
       value: Ring Spawner
