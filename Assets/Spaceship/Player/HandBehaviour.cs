@@ -5,7 +5,13 @@ using UnityEngine.XR;
 
 public class HandBehaviour : MonoBehaviour
 {
+    public List<GameObject> controllerPrefabs;
     private InputDevice targetDevice;
+
+
+    public GameObject spawnedController;
+    public GameObject handModelPrefab; 
+    private GameObject spawnedHandModel;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,14 +29,27 @@ public class HandBehaviour : MonoBehaviour
 
         if (devices.Count > 0)
         {
-            targetDevice = devices[0];
+            GameObject prefab = controllerPrefabs.Find(controller => controller.name == targetDevice.name);
+
+
+            if (prefab)
+                spawnedController = Instantiate(prefab, transform);
+            else
+            {
+                Debug.Log("shit");
+                spawnedController = Instantiate(controllerPrefabs[0], transform);
+            }
+            
+            //targetDevice = devices[0];
+            //spawnedHandModel = Instantiate(handModelPrefab, transform);
+           // spawnedHandModel.SetActive(true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+/* 
         if(targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue)&& primaryButtonValue);
             Debug.Log("primary button");
         
@@ -40,5 +59,6 @@ public class HandBehaviour : MonoBehaviour
         
         if(targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2dAxisValue)&& primary2dAxisValue != Vector2.zero);
             Debug.Log("Primary Touchpad" + primary2dAxisValue);
+            */
     }
 }
