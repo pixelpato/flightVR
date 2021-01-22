@@ -3,8 +3,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class HandButton : XRBaseInteractable
+public class RotationButton : XRBaseInteractable
 {
+
+    public bool ButtonIsPressed = false;
     
     public UnityEvent OnPress = null;
     private bool previousPress = false;
@@ -42,6 +44,7 @@ public class HandButton : XRBaseInteractable
         previousHandHeight = 0;
         previousPress = false;
         SetYPosition(yMax);
+        ButtonIsPressed = !ButtonIsPressed;
 
     }
 
