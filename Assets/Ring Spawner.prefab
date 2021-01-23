@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ringPF: {fileID: 7598033204984612623, guid: 5d4b7cbac7956654ebe65bc7b04de7d9, type: 3}
-  distanceToNextRing: 10
+  distanceToNextRing: 35
   rotationTolerance: 10
   positionTolerance: 5
   maxCurrentRings: 3
