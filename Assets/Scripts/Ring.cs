@@ -13,6 +13,7 @@ public class Ring : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManagerHelper.Instance.IncreaseRingScore();
             RingSpawner.Instance.spawnRing(transform.position, gameObject);
         }
     }
