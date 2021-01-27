@@ -11,6 +11,12 @@ public class UiManager : MonoBehaviour
     [Header("HUD")]
     public TextMeshProUGUI ringPointsText;
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI speedText;
+
+    public void updateSpeedText(int speed)
+    {
+        speedText.text = speed.ToString() + " m/s";
+    }
 
     public void resetHUD()
     {
