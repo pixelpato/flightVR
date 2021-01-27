@@ -10,8 +10,8 @@ public class GameManagerHelper : MonoBehaviour
     [HideInInspector] public float currentMatchLength;
     [HideInInspector] public int ringsScored = 0;
     public int ringsToScore = 30;
-    public bool isMatchRunning = false;
-    public bool isReadyToStartMatch = true;
+    [HideInInspector] public bool isMatchRunning = false;
+    [HideInInspector] public bool isReadyToStartMatch = true;
 
     public void StartRound()
     {
