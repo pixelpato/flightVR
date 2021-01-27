@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class NewPlayerController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class NewPlayerController : MonoBehaviour
     public Rigidbody spaceShipRb;
     public JoystickControll JoystickControll;
     public GameObject SpeedTrigger; // z pos  for speed -> smth between 7.778907 and  7.978907
-    
+    private XRGrabInteractable speedTriggerInteract;
     
     public RotationButton RotationButtonLeft;
     public RotationButton RotationButtonRight;
@@ -22,6 +23,7 @@ public class NewPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speedTriggerInteract = SpeedTrigger.GetComponent<XRGrabInteractable>();
         rb = GetComponent<Rigidbody>();
         if(rb == null)
             Debug.Log("rb is null");
@@ -32,7 +34,8 @@ public class NewPlayerController : MonoBehaviour
     {
       MoveSpaceship();
       RotateSpaceship();
-
+          
+        Debug.Log("is hovered " + speedTriggerInteract.isHovered +"is selected" +  speedTriggerInteract.isSelected + "the last shit " + speedTriggerInteract.isActiveAndEnabled);      
     }
 
     private void RotateSpaceship()
