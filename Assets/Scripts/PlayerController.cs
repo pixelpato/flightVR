@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject AsteroidTemp;
     
-
     private void Awake () {
         Monitor = GameObject.Find("Canvas/Text").GetComponent<Text>();
     }

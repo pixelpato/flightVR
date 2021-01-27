@@ -287,6 +287,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &265899018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 265899018, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+  m_PrefabInstance: {fileID: 4939393700591679070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &436298970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5143786219960295854, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
@@ -521,6 +532,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc6b83dc23ad1e458db6a0755e0ecbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1622010029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1622010029, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+  m_PrefabInstance: {fileID: 4939393700591679070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1722735454 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1722735454, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+  m_PrefabInstance: {fileID: 4939393700591679070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1442153429856109657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -572,6 +605,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1442153428502298038, guid: 9b93f8eaa55e1d647b935f7d7202b9a5, type: 3}
+      propertyPath: ringPointsText
+      value: 
+      objectReference: {fileID: 1722735454}
+    - target: {fileID: 1442153428502298038, guid: 9b93f8eaa55e1d647b935f7d7202b9a5, type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 1622010029}
+    - target: {fileID: 1442153428502298038, guid: 9b93f8eaa55e1d647b935f7d7202b9a5, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 265899018}
     - target: {fileID: 1442153428502298039, guid: 9b93f8eaa55e1d647b935f7d7202b9a5, type: 3}
       propertyPath: m_Name
       value: UiManager
@@ -688,14 +733,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4939393700490721027, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4939393701612722638, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
-      propertyPath: m_SmoothPosition
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4939393701612722638, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
-      propertyPath: m_ThrowOnDetach
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
