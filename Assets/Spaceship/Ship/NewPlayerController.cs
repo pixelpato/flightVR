@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
@@ -9,6 +10,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class NewPlayerController : MonoBehaviour
 {
+    public TextMeshProUGUI TextMeshPro;
+    
+    
+    
     private Rigidbody rb;
     public float SpeedMultiplier = 350f;
     private float OldSpeed;
@@ -56,31 +61,42 @@ public class NewPlayerController : MonoBehaviour
 
     private void MoveSpaceship()
     {
-        float speed = GetSpeed();
         Vector3 direction = new Vector3(JoystickControll.sideToSideTilt *-1 , GetHeightSpeed(), JoystickControll.forwardBackwardTilt *-1);
         direction = Vector3.Normalize(direction);
+
         
-        Vector3 newMovement = direction * speed;
-        newMovement = MultiplyForNewDirection(newMovement);
-        newMovement *= Time.deltaTime;
+        float speed = GetSpeed();
+        speed = MultiplyForNewDirection(direction, speed);
+        TextMeshPro.text += "\nspeed is : " + speed;
+
+        Vector3 newMovement = direction * speed * Time.deltaTime;
         Debug.Log("new movement  " + newMovement);
         
         rb.AddForce(direction);
         Debug.Log("current velocity on rb is " + rb.velocity);
     }
 
-    private Vector3 MultiplyForNewDirection(Vector3 newMovement)
+    //mehr speed bei einer neuen richtung 
+    private float MultiplyForNewDirection(Vector3 newMovement, float speed)
     {
+        TextMeshPro.text = " Old movement is :  " + OldMovement + "\n New movement is : " + newMovement;
+        
         Debug.Log("new Direction!!");
         if (OldMovement.x < 0 && newMovement.x > 0 || OldMovement.x > 0 && newMovement.x < 0 ||
             OldMovement.z < 0 && newMovement.z > 0 || OldMovement.z > 0 && newMovement.z < 0)
-            newMovement *= 4;
+        {
+            
+            speed *= 4;
+        }
         else
             OldMovement = newMovement;
 
-        return newMovement;
+
+
+        return speed;
     }
 
+    //Beschleunigen
     private float GetSpeed() 
     {
         if (!speedTriggerInteract.isSelected)
@@ -89,7 +105,6 @@ public class NewPlayerController : MonoBehaviour
             float currentSpeedMultiplier = GetSpeedMultiplier();
             float newSpeed = distance * currentSpeedMultiplier; 
             
-            Debug.Log("new speed is " + newSpeed);
             OldSpeed = Math.Abs(newSpeed);
             
             
