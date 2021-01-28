@@ -481,6 +481,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876927657}
   m_CullTransparentMesh: 0
+--- !u!4 &1074142447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2622084566211688615, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+  m_PrefabInstance: {fileID: 4939393700591679070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1106948729
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +700,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3445758292388037989, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: m_ModelPrefab
+      value: 
+      objectReference: {fileID: 414912, guid: e6ba3498ffa1e534b91a07264266e6b8, type: 3}
+    - target: {fileID: 3445758292860145317, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: m_ModelPrefab
+      value: 
+      objectReference: {fileID: 422740, guid: ba1fa4a8c66106b4988c88fe4b8e8502, type: 3}
+    - target: {fileID: 3445758292860145317, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: m_ModelTransform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445758292860145317, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: m_AnimateModel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445758293821002949, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: AnchorPoint
+      value: 
+      objectReference: {fileID: 1074142447}
     - target: {fileID: 4939393700490721026, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
       propertyPath: m_Name
       value: Player

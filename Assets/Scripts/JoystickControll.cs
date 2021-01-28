@@ -7,7 +7,9 @@ public class JoystickControll : MonoBehaviour
 {
 
     public Transform topOfJoystick;
+    public Transform AnchorPoint;
 
+    
     [SerializeField] public float forwardBackwardTilt = 0;
     [SerializeField] public float sideToSideTilt = 0;
     public float maxTilt = 40; 
@@ -21,7 +23,7 @@ public class JoystickControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
         forwardBackwardTilt = topOfJoystick.rotation.eulerAngles.x;
         if (forwardBackwardTilt < 355 && forwardBackwardTilt > 290)
         {
@@ -46,6 +48,11 @@ public class JoystickControll : MonoBehaviour
             forwardBackwardTilt = maxTilt;
         if (sideToSideTilt > maxTilt)
             sideToSideTilt = maxTilt;
+            
+            */
+
+        forwardBackwardTilt =(topOfJoystick.position.z - AnchorPoint.position.z)*10;
+        sideToSideTilt = (topOfJoystick.position.x - AnchorPoint.position.x) *10;
 
     }
 

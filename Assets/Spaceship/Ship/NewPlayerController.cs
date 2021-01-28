@@ -15,7 +15,7 @@ public class NewPlayerController : MonoBehaviour
     private Vector3 OldMovement = new Vector3(0,0,0);
     private Vector3 MaxSpeed = new Vector3(15, 15, 15);
 
-    public int heightSpeed = 5;
+    public int heightSpeed = 10;
     public JoystickControll JoystickControll;
     
     
@@ -57,7 +57,7 @@ public class NewPlayerController : MonoBehaviour
     private void MoveSpaceship()
     {
         float speed = GetSpeed();
-        Vector3 direction = new Vector3(JoystickControll.sideToSideTilt , GetHeightSpeed(), JoystickControll.forwardBackwardTilt *-1);
+        Vector3 direction = new Vector3(JoystickControll.sideToSideTilt *-1 , GetHeightSpeed(), JoystickControll.forwardBackwardTilt *-1);
         direction = Vector3.Normalize(direction);
         
         Vector3 newMovement = direction * speed;
@@ -71,6 +71,7 @@ public class NewPlayerController : MonoBehaviour
 
     private Vector3 MultiplyForNewDirection(Vector3 newMovement)
     {
+        Debug.Log("new Direction!!");
         if (OldMovement.x < 0 && newMovement.x > 0 || OldMovement.x > 0 && newMovement.x < 0 ||
             OldMovement.z < 0 && newMovement.z > 0 || OldMovement.z > 0 && newMovement.z < 0)
             newMovement *= 4;
@@ -100,9 +101,13 @@ public class NewPlayerController : MonoBehaviour
 
     private float GetSpeedMultiplier()
     {
-        if (rb.velocity.x < MaxSpeed.x || rb.velocity.z < MaxSpeed.z)
+        if (Math.Abs(rb.velocity.x) < MaxSpeed.x ||Math.Abs(rb.velocity.z) < MaxSpeed.z)
         {
-            return SpeedMultiplier + 150;
+            Debug.Log("SpeedUp!!!");
+            if (Math.Abs(rb.velocity.x) < 5 || Math.Abs(rb.velocity.x) < 5)
+               return SpeedMultiplier *3;
+            
+            return SpeedMultiplier * 2;
         }
         return SpeedMultiplier;
     }
