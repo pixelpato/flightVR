@@ -11,8 +11,11 @@ public class Ring : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Ring collides with + " + other.tag);
+
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Ring Hit Player");
             GameManagerHelper.Instance.IncreaseRingScore();
             RingSpawner.Instance.spawnRing(transform.position, gameObject);
         }
