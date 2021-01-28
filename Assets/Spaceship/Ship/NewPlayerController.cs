@@ -10,11 +10,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class NewPlayerController : MonoBehaviour
 {
     private Rigidbody rb;
-    public float SpeedMultiplier = 250f;
+    public float SpeedMultiplier = 350f;
     private float OldSpeed;
+    private Vector3 OldMovement = new Vector3(0,0,0);
+    private Vector3 MaxSpeed = new Vector3(15, 15, 15);
 
     public int heightSpeed = 5;
-    public Rigidbody spaceShipRb;
     public JoystickControll JoystickControll;
     
     
@@ -46,7 +47,7 @@ public class NewPlayerController : MonoBehaviour
     {
         if (UpButton.ButtonIsPressed && !DownButton.ButtonIsPressed)
             return heightSpeed;
-        else if (!UpButton.ButtonIsPressed && DownButton.ButtonIsPressed)
+        if (!UpButton.ButtonIsPressed && DownButton.ButtonIsPressed)
             return -heightSpeed;
 
         return 0;
@@ -56,39 +57,53 @@ public class NewPlayerController : MonoBehaviour
     private void MoveSpaceship()
     {
         float speed = GetSpeed();
-        Vector3 direction = new Vector3(JoystickControll.sideToSideTilt * -1, GetHeightSpeed(), JoystickControll.forwardBackwardTilt);
-        Debug.Log("direction is  " + direction);
+        Vector3 direction = new Vector3(JoystickControll.sideToSideTilt , GetHeightSpeed(), JoystickControll.forwardBackwardTilt *-1);
         direction = Vector3.Normalize(direction);
-        Debug.Log("direction normalized  " + direction);
-        Vector3 newMovement = direction * speed * Time.deltaTime *-1;
+        
+        Vector3 newMovement = direction * speed;
+        newMovement = MultiplyForNewDirection(newMovement);
+        newMovement *= Time.deltaTime;
         Debug.Log("new movement  " + newMovement);
-
         
-        //        transform.Translate(newMovement * -1);
-
-
-      //  float x = JoystickControll.sideToSideTilt * -1 * speed * Time.deltaTime;
-     //   float y = GetHeightSpeed();
-       // float z = JoystickControll.forwardBackwardTilt * speed * Time.deltaTime;
-        //invert values
         rb.AddForce(direction);
-        
         Debug.Log("current velocity on rb is " + rb.velocity);
     }
 
-    private float GetSpeed() //smth between -6 and 6 i guess
+    private Vector3 MultiplyForNewDirection(Vector3 newMovement)
+    {
+        if (OldMovement.x < 0 && newMovement.x > 0 || OldMovement.x > 0 && newMovement.x < 0 ||
+            OldMovement.z < 0 && newMovement.z > 0 || OldMovement.z > 0 && newMovement.z < 0)
+            newMovement *= 4;
+        else
+            OldMovement = newMovement;
+
+        return newMovement;
+    }
+
+    private float GetSpeed() 
     {
         if (!speedTriggerInteract.isSelected)
         {
             float distance =SpeedTrigger.transform.position.z -  SpeedTriggerStartPoint.transform.position.z;
-
-            float newSpeed = distance * SpeedMultiplier; 
-            
+            float currentSpeedMultiplier = GetSpeedMultiplier();
+            float newSpeed = distance * currentSpeedMultiplier; 
             
             Debug.Log("new speed is " + newSpeed);
-            OldSpeed = (float) Math.Abs(newSpeed);
-            return (float) Math.Abs(newSpeed);
+            OldSpeed = Math.Abs(newSpeed);
+            
+            
+            return Math.Abs(newSpeed);
         }
         return OldSpeed;
+    }
+
+
+    private float GetSpeedMultiplier()
+    {
+        if (rb.velocity.x < MaxSpeed.x || rb.velocity.z < MaxSpeed.z)
+        {
+            return SpeedMultiplier + 150;
+        }
+        return SpeedMultiplier;
     }
 }

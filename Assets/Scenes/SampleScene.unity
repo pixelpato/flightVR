@@ -747,6 +747,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4939393702396891310, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: m_Swing2Limit.limit
+      value: 103.34334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939393702396891310, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: m_Swing1Limit.limit
+      value: 51.804382
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939393702396891310, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
+      propertyPath: m_LowTwistLimit.limit
+      value: -29.260784
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
 --- !u!1 &4939393700591679078 stripped

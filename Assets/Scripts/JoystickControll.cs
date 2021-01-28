@@ -10,7 +10,7 @@ public class JoystickControll : MonoBehaviour
 
     [SerializeField] public float forwardBackwardTilt = 0;
     [SerializeField] public float sideToSideTilt = 0;
-
+    public float maxTilt = 40; 
     
     // Start is called before the first frame update
     void Start()
@@ -36,12 +36,17 @@ public class JoystickControll : MonoBehaviour
         if (sideToSideTilt < 355 && sideToSideTilt > 290)
         {
             sideToSideTilt = sideToSideTilt - 360;
-            //Debug.Log("Right: " + sideToSideTilt);
         }
         else if (sideToSideTilt > 5 && sideToSideTilt < 74)
         {
-           // Debug.Log("left: " + sideToSideTilt);
         }
+
+
+        if (forwardBackwardTilt > maxTilt)
+            forwardBackwardTilt = maxTilt;
+        if (sideToSideTilt > maxTilt)
+            sideToSideTilt = maxTilt;
+
     }
 
 
