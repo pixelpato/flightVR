@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ShipSounds : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    // Static Accessability
+    public static ShipSounds Instance { get; private set; }
+
+    public AudioSource audioSource;
+
+
+    private void Start () {
+        audioSource = GetComponent<AudioSource>(); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void volume(float vol) {
+        audioSource.volume = vol;
+        // Debug.Log(vol);
     }
 }

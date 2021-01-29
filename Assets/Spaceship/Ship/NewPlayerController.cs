@@ -26,6 +26,7 @@ public class NewPlayerController : MonoBehaviour
     
     public GameObject SpeedTrigger;
     public GameObject SpeedTriggerStartPoint;
+    public ShipSounds shipSFX;
     private XRGrabInteractable speedTriggerInteract; 
 
     public RotationButton UpButton;
@@ -41,6 +42,8 @@ public class NewPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (rb == null)
             Debug.Log("rb is null");
+        GameObject shipObj = GameObject.Find("ShipSound");
+        shipSFX = shipObj.GetComponent<ShipSounds>();
     }
 
     void FixedUpdate()
@@ -49,6 +52,7 @@ public class NewPlayerController : MonoBehaviour
         SetSpeedMultiplier();
         MoveSpaceship();
         UiManager.Instance.updateSpeedText(Mathf.FloorToInt(GetSpeed()));
+        shipSFX.volume(GetSpeed());
     }
     private void SetMovement()
     {
