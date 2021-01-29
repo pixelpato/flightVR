@@ -81,11 +81,11 @@ public class NewPlayerController : MonoBehaviour
     private void AddSpeedUpMultiplier()
     {
             if (Math.Abs(rb.velocity.x) < 3 || Math.Abs(rb.velocity.z) < 3)
-                SpeedMultiplier =3;
+                SpeedMultiplier =4;
             if (Math.Abs(rb.velocity.x) < 5 || Math.Abs(rb.velocity.z) < 5)
-                SpeedMultiplier = 2; 
+                SpeedMultiplier = 3; 
             if (Math.Abs(rb.velocity.x) >10 || Math.Abs(rb.velocity.z) > 10)
-                SpeedMultiplier = 1;
+                SpeedMultiplier = 2;
     }
     private int  GetHeightSpeed()
     {
@@ -101,7 +101,7 @@ public class NewPlayerController : MonoBehaviour
         float speed = GetSpeed();
         Vector3 updatedMovement = NewMovement * speed * Time.deltaTime;
         
-        TextMeshPro.text = "speed is : " + speed +"\n and multiplier is " + SpeedMultiplier + "\n new movement  " + updatedMovement +"\n velocity is " + rb.velocity;
+        TextMeshPro.text = "speed is : " + speed +"\n and multiplier is " + SpeedMultiplier + "\n new movement  " + NewMovement +"\n velocity is " + rb.velocity;
         if (Math.Abs(rb.velocity.x) < MaxVelocity.x ||Math.Abs(rb.velocity.z) < MaxVelocity.z)
             rb.AddForce(updatedMovement);
     }
