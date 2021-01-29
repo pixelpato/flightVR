@@ -10,19 +10,19 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class NewPlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI TextMeshPro;
     
-    
-    
+    //movement data
     private Rigidbody rb;
-    public float SpeedMultiplier = 350f;
+    public float SpeedMultiplier = 1;
     private float OldSpeed;
+    public float Speed = 350;
     private Vector3 OldMovement = new Vector3(0,0,0);
-    private Vector3 MaxSpeed = new Vector3(15, 15, 15);
-
+    private Vector3 NewMovement = new Vector3(0,0,0);
+    private Vector3 MaxVelocity = new Vector3(15, 15, 15);
     public int heightSpeed = 10;
-    public JoystickControll JoystickControll;
     
+    //player interaction    
+    public JoystickControll JoystickControll;
     
     public GameObject SpeedTrigger;
     public GameObject SpeedTriggerStartPoint;
@@ -31,6 +31,8 @@ public class NewPlayerController : MonoBehaviour
     public RotationButton UpButton;
     public RotationButton DownButton;
 
+    public TextMeshProUGUI TextMeshPro;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -41,89 +43,84 @@ public class NewPlayerController : MonoBehaviour
             Debug.Log("rb is null");
     }
 
-
     void FixedUpdate()
     {
+        SetMovement();
+        SetSpeedMultiplier();
         MoveSpaceship();
         UiManager.Instance.updateSpeedText(Mathf.FloorToInt(GetSpeed()));
     }
-
+    private void SetMovement()
+    {
+        NewMovement = new Vector3(JoystickControll.sideToSideTilt *-1 , GetHeightSpeed(), JoystickControll.forwardBackwardTilt *-1);
+        NewMovement = Vector3.Normalize(NewMovement);
+    }
+    private void SetSpeedMultiplier()
+    {
+        AddSpeedUpMultiplier();
+        MultiplyForNewDirection();
+        
+        
+    }
+    private void MultiplyForNewDirection()
+    {
+        //TextMeshPro.text = " Old movement is :  " + OldMovement + "\n New movement is : " + NewMovement;
+         if (OldMovement.x < 0 && NewMovement.x > 0 || OldMovement.x > 0 && NewMovement.x < 0 ||
+            OldMovement.z < 0 && NewMovement.z > 0 || OldMovement.z > 0 && NewMovement.z < 0)
+        {
+            if(Math.Abs(rb.velocity.x) > 6 ||Math.Abs(rb.velocity.z) > 6)
+                SpeedMultiplier += 12;
+            else if(Math.Abs(rb.velocity.x) > 3 ||Math.Abs(rb.velocity.z) > 3)
+                SpeedMultiplier += 8;
+            else
+                SpeedMultiplier += 5;
+        }
+        else
+            OldMovement = NewMovement;
+    }
+    private void AddSpeedUpMultiplier()
+    {
+            if (Math.Abs(rb.velocity.x) < 3 || Math.Abs(rb.velocity.z) < 3)
+                SpeedMultiplier =3;
+            if (Math.Abs(rb.velocity.x) < 5 || Math.Abs(rb.velocity.z) < 5)
+                SpeedMultiplier = 2; 
+            if (Math.Abs(rb.velocity.x) >10 || Math.Abs(rb.velocity.z) > 10)
+                SpeedMultiplier = 1;
+    }
     private int  GetHeightSpeed()
     {
         if (UpButton.ButtonIsPressed && !DownButton.ButtonIsPressed)
-            return heightSpeed;
-        if (!UpButton.ButtonIsPressed && DownButton.ButtonIsPressed)
             return -heightSpeed;
+        if (!UpButton.ButtonIsPressed && DownButton.ButtonIsPressed)
+            return heightSpeed;
 
         return 0;
     }
-
-
     private void MoveSpaceship()
     {
-        Vector3 direction = new Vector3(JoystickControll.sideToSideTilt *-1 , GetHeightSpeed(), JoystickControll.forwardBackwardTilt *-1);
-        direction = Vector3.Normalize(direction);
-
-        
         float speed = GetSpeed();
-        speed = MultiplyForNewDirection(direction, speed);
-        TextMeshPro.text += "\nspeed is : " + speed;
-
-        Vector3 newMovement = direction * speed * Time.deltaTime;
-        Debug.Log("new movement  " + newMovement);
+        Vector3 updatedMovement = NewMovement * speed * Time.deltaTime;
         
-        rb.AddForce(direction);
-        Debug.Log("current velocity on rb is " + rb.velocity);
+        TextMeshPro.text = "speed is : " + speed +"\n and multiplier is " + SpeedMultiplier + "\n new movement  " + updatedMovement +"\n velocity is " + rb.velocity;
+        if (Math.Abs(rb.velocity.x) < MaxVelocity.x ||Math.Abs(rb.velocity.z) < MaxVelocity.z)
+            rb.AddForce(updatedMovement);
     }
-
-    //mehr speed bei einer neuen richtung 
-    private float MultiplyForNewDirection(Vector3 newMovement, float speed)
-    {
-        TextMeshPro.text = " Old movement is :  " + OldMovement + "\n New movement is : " + newMovement;
-        
-        Debug.Log("new Direction!!");
-        if (OldMovement.x < 0 && newMovement.x > 0 || OldMovement.x > 0 && newMovement.x < 0 ||
-            OldMovement.z < 0 && newMovement.z > 0 || OldMovement.z > 0 && newMovement.z < 0)
-        {
-            
-            speed *= 4;
-        }
-        else
-            OldMovement = newMovement;
-
-
-
-        return speed;
-    }
-
-    //Beschleunigen
     private float GetSpeed() 
     {
         if (!speedTriggerInteract.isSelected)
         {
             float distance =SpeedTrigger.transform.position.z -  SpeedTriggerStartPoint.transform.position.z;
-            float currentSpeedMultiplier = GetSpeedMultiplier();
-            float newSpeed = distance * currentSpeedMultiplier; 
+            distance *= 10;
+            Debug.Log("speed is " + Speed +"distance is " + distance  + "multi is " + SpeedMultiplier);
+            
+            float newSpeed = Speed * distance * SpeedMultiplier; 
             
             OldSpeed = Math.Abs(newSpeed);
-            
-            
-            return Math.Abs(newSpeed);
+            return OldSpeed;
         }
         return OldSpeed;
     }
 
 
-    private float GetSpeedMultiplier()
-    {
-        if (Math.Abs(rb.velocity.x) < MaxSpeed.x ||Math.Abs(rb.velocity.z) < MaxSpeed.z)
-        {
-            Debug.Log("SpeedUp!!!");
-            if (Math.Abs(rb.velocity.x) < 5 || Math.Abs(rb.velocity.x) < 5)
-               return SpeedMultiplier *3;
-            
-            return SpeedMultiplier * 2;
-        }
-        return SpeedMultiplier;
-    }
+  
 }
