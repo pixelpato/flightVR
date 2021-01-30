@@ -39,4 +39,14 @@ public class AsteroidDestroy : MonoBehaviour
         }
         Destroy(fracturedStone,5f);
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("collision right here");
+        if(other.gameObject.layer == 9)
+            Destroy(this);
+        
+        
+    }
 }

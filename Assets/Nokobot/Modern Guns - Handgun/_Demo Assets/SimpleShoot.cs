@@ -65,7 +65,6 @@ public class SimpleShoot : MonoBehaviour
                 Debug.Log("Trigger button is pressed.");
 
                 Shoot();
-                Destroy(Asteroid);
                 timer = 0;
             }
         }
