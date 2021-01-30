@@ -6,16 +6,25 @@ using UnityEngine.InputSystem.XR;
 
 public class PlayerShooting : MonoBehaviour
 {
+    [Header("Prefab Refrences")]
+    public GameObject bulletPrefab;
+    public GameObject casingPrefab;
+    public GameObject muzzleFlashPrefab;
+    
+    
+    
 
     public GameObject Asteroid;
 
     public XRController RightHand ;
     UnityEngine.XR.InputDevice device;
+
+    private SimpleShoot simpleShoot;
+    
     
     // Start is called before the first frame update
     void Start()
     {
-
         var leftHandDevices = new List<UnityEngine.XR.InputDevice>();
         UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
 
@@ -38,7 +47,15 @@ public class PlayerShooting : MonoBehaviour
         if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue)
         {
             Debug.Log("Trigger button is pressed.");
-            Destroy(Asteroid);
         }
     }
+
+    private void Shoot()
+    {
+        
+        
+                    
+    }
+    
+    
 }

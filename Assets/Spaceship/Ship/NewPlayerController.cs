@@ -43,7 +43,7 @@ public class NewPlayerController : MonoBehaviour
         if (rb == null)
             Debug.Log("rb is null");
         GameObject shipObj = GameObject.Find("ShipSound");
-        shipSFX = shipObj.GetComponent<ShipSounds>();
+      //  shipSFX = shipObj.GetComponent<ShipSounds>();
     }
 
     void FixedUpdate()
@@ -52,7 +52,7 @@ public class NewPlayerController : MonoBehaviour
         SetSpeedMultiplier();
         MoveSpaceship();
         UiManager.Instance.updateSpeedText(Mathf.FloorToInt(GetSpeed()));
-        shipSFX.volume(GetSpeed());
+        //shipSFX.volume(GetSpeed());
     }
     private void SetMovement()
     {
@@ -105,7 +105,7 @@ public class NewPlayerController : MonoBehaviour
         float speed = GetSpeed();
         Vector3 updatedMovement = NewMovement * speed * Time.deltaTime;
         
-        TextMeshPro.text = "speed is : " + speed +"\n and multiplier is " + SpeedMultiplier + "\n new movement  " + NewMovement +"\n velocity is " + rb.velocity;
+      //  TextMeshPro.text = "speed is : " + speed +"\n and multiplier is " + SpeedMultiplier + "\n new movement  " + NewMovement +"\n velocity is " + rb.velocity;
         if (Math.Abs(rb.velocity.x) < MaxVelocity.x ||Math.Abs(rb.velocity.z) < MaxVelocity.z)
             rb.AddForce(updatedMovement);
     }
@@ -115,7 +115,7 @@ public class NewPlayerController : MonoBehaviour
         {
             float distance =SpeedTrigger.transform.position.z -  SpeedTriggerStartPoint.transform.position.z;
             distance *= 10;
-            Debug.Log("speed is " + Speed +"distance is " + distance  + "multi is " + SpeedMultiplier);
+         //   Debug.Log("speed is " + Speed +"distance is " + distance  + "multi is " + SpeedMultiplier);
             
             float newSpeed = Speed * distance * SpeedMultiplier; 
             
