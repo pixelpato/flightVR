@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!54 &6 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4939393700591679064, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
-  m_PrefabInstance: {fileID: 4939393700591679070}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9118108 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9118108, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
@@ -319,72 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &436298970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5143786219960295854, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-  m_PrefabInstance: {fileID: 5143786219471873778}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &436298971
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436298970}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
---- !u!114 &436298972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436298970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be84e4d7829855419c06b94e56bd135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootTime: 1
-  timer: 0
-  bulletPrefab: {fileID: 2503632656929731332, guid: 2e90f35094125f24f92059277ddbb194, type: 3}
-  muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  barrelLocation: {fileID: 1127246196}
-  destroyTimer: 2
-  shotPower: 500
-  ejectPower: 150
---- !u!114 &436298973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436298970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fea129f5a861a0468b957cdcc079f4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 64810606}
-  xOffset: 35
-  asteroid: {fileID: 742718660028909479, guid: 783f3714d55617543b7b22ed384610dd, type: 3}
-  minForce: 10
-  maxForce: 20
-  timeIntervalMin: 3
-  timeIntervalMax: 6
-  asteroidSpawnPoint: {fileID: 88256700}
---- !u!54 &628099869 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 4939393702396891317, guid: 4c2b3f007c094004ea8ba0d64a9d87a0, type: 3}
-  m_PrefabInstance: {fileID: 4939393700591679070}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &642918575
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,18 +883,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5143786218917115747, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: maxCurrentRings
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: spaceShipRb
+    - target: {fileID: 436298972, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
+      propertyPath: barrelLocation
       value: 
-      objectReference: {fileID: 6}
-    - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: JoystickRB
+      objectReference: {fileID: 1127246196}
+    - target: {fileID: 436298973, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
+      propertyPath: player
       value: 
-      objectReference: {fileID: 628099869}
+      objectReference: {fileID: 64810606}
+    - target: {fileID: 436298973, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
+      propertyPath: asteroidSpawnPoint
+      value: 
+      objectReference: {fileID: 88256700}
     - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
       propertyPath: JoystickControll
       value: 
@@ -974,22 +903,6 @@ PrefabInstance:
       propertyPath: SpeedTrigger
       value: 
       objectReference: {fileID: 7736492085333666239}
-    - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: RotationButton
-      value: 
-      objectReference: {fileID: 7736492085333666238}
-    - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: RotationButtonLeft
-      value: 
-      objectReference: {fileID: 7736492085333666238}
-    - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: RotationButtonRight
-      value: 
-      objectReference: {fileID: 1559231707}
-    - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: RotationSpeed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
       propertyPath: SpeedTriggerStartPoint
       value: 
@@ -1002,10 +915,6 @@ PrefabInstance:
       propertyPath: DownButton
       value: 
       objectReference: {fileID: 7736492085333666238}
-    - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
-      propertyPath: heightSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5143786219960295852, guid: e4e02644780d2cf448e810ee007a3ac4, type: 3}
       propertyPath: TextMeshPro
       value: 
