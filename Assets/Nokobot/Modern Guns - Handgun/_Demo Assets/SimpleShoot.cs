@@ -14,7 +14,8 @@ public class SimpleShoot : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject muzzleFlashPrefab;
     [Header("Location Refrences")]
-    [SerializeField] private Transform barrelLocation;
+    [SerializeField] private Transform barrelLocationLeft;
+    [SerializeField] private Transform barrelLocationRight;
     [Header("Settings")]
     [Tooltip("Specify time to destory the casing object")] [SerializeField] private float destroyTimer = 2f;
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
@@ -23,11 +24,14 @@ public class SimpleShoot : MonoBehaviour
     UnityEngine.XR.InputDevice leftDevice;
     UnityEngine.XR.InputDevice rightDevice;
 
-
+    bool triggerValue;
+    bool secondTriggerValue;
+    
+    
     void Start()
     {
-        if (barrelLocation == null)
-            barrelLocation = transform;
+        if (barrelLocationLeft == null)
+            barrelLocationLeft = transform;
 
         InitController();
     }
@@ -66,8 +70,7 @@ public class SimpleShoot : MonoBehaviour
 
         if (timer > shootTime)
         {
-            bool triggerValue;
-            bool secondTriggerValue;
+            
             if (leftDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue ||
                 rightDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out secondTriggerValue) && secondTriggerValue)
             {
@@ -86,7 +89,11 @@ public class SimpleShoot : MonoBehaviour
         {
             //Create the muzzle flash
             GameObject tempFlash;
-            tempFlash = Instantiate(muzzleFlashPrefab, barrelLocation.position, barrelLocation.rotation);
+            
+            if(triggerValue)
+                tempFlash = Instantiate(muzzleFlashPrefab, barrelLocationLeft.position, barrelLocationLeft.rotation);
+            else 
+                tempFlash = Instantiate(muzzleFlashPrefab, barrelLocationRight.position, barrelLocationRight.rotation);
 
             //Destroy the muzzle flash effect
             Destroy(tempFlash, destroyTimer);
@@ -97,12 +104,21 @@ public class SimpleShoot : MonoBehaviour
         { return; }
 
         // Create a bullet and add force on it in direction of the barrel
-        GameObject bullet = Instantiate(bulletPrefab, barrelLocation.position, barrelLocation.rotation);
-        bullet.GetComponent<Rigidbody>().AddForce(barrelLocation.forward * shotPower);
-        Destroy(bullet, destroyTimer +8);
-        Debug.Log("nwe bullet");
 
+        if (triggerValue)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, barrelLocationLeft.position, barrelLocationLeft.rotation);
+            bullet.GetComponent<Rigidbody>().AddForce(barrelLocationLeft.forward * shotPower);
+            Destroy(bullet, destroyTimer +8);
+            Debug.Log("nwe bullet");
+
+        }else if (secondTriggerValue)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, barrelLocationRight.position, barrelLocationRight.rotation);
+            bullet.GetComponent<Rigidbody>().AddForce(barrelLocationLeft.forward * shotPower);
+            Destroy(bullet, destroyTimer +8);
+            Debug.Log("nwe bullet");
+
+        }
     }
-    
-
 }

@@ -5104,13 +5104,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be84e4d7829855419c06b94e56bd135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTime: 1
+  shootTime: 0.3
   timer: 0
   bulletPrefab: {fileID: 2503632656929731332, guid: 2e90f35094125f24f92059277ddbb194, type: 3}
   muzzleFlashPrefab: {fileID: 1782395880954752, guid: 3dd9cf2e209c504448f1c4c6835675cf, type: 3}
-  barrelLocation: {fileID: 0}
+  barrelLocationLeft: {fileID: 0}
+  barrelLocationRight: {fileID: 0}
   destroyTimer: 2
-  shotPower: 500
+  shotPower: 1000
   ejectPower: 150
 --- !u!114 &436298973
 MonoBehaviour:
@@ -5127,8 +5128,8 @@ MonoBehaviour:
   player: {fileID: 0}
   xOffset: 35
   asteroid: {fileID: 742718660028909479, guid: 783f3714d55617543b7b22ed384610dd, type: 3}
-  minForce: 10
-  maxForce: 20
+  minForce: 5
+  maxForce: 10
   timeIntervalMin: 3
   timeIntervalMax: 6
   asteroidSpawnPoint: {fileID: 0}

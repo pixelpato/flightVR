@@ -29,12 +29,13 @@ public class BulletScript : MonoBehaviour
         if (asteroid.layer == 10)
         {
             Debug.Log("hit an asteroid");
-            
+   
             
             GameObject fracturedStone = Instantiate(Resources.Load("StoneTwoFractured", typeof(GameObject))) as GameObject;
-            Destroy(asteroid);
             fracturedStone.transform.parent = asteroid.transform.parent;
             fracturedStone.transform.position = asteroid.transform.position;
+            
+            Destroy(asteroid);
         
             GameObject explosion = Instantiate(ExplosionVFX);
             explosion.transform.position = asteroid.transform.position;
