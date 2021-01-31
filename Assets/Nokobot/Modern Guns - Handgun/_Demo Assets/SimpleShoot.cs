@@ -19,13 +19,9 @@ public class SimpleShoot : MonoBehaviour
     [Tooltip("Specify time to destory the casing object")] [SerializeField] private float destroyTimer = 2f;
     [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 500f;
     [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
-
-
-    public GameObject Asteroid;
     
-    
-    public XRController RightHand ;
-    UnityEngine.XR.InputDevice device;
+    UnityEngine.XR.InputDevice leftDevice;
+    UnityEngine.XR.InputDevice rightDevice;
 
 
     void Start()
@@ -43,13 +39,24 @@ public class SimpleShoot : MonoBehaviour
 
         if(leftHandDevices.Count == 1)
         {
-            device = leftHandDevices[0];
-            Debug.Log(string.Format("Device name '{0}' with role '{1}'", device.name, device.role.ToString()));
+            leftDevice = leftHandDevices[0];
+            Debug.Log(string.Format("Device name '{0}' with role '{1}'", leftDevice.name, leftDevice.role.ToString()));
         }
         else if(leftHandDevices.Count > 1)
-        {
             Debug.Log("Found more than one left hand!");
+
+        
+        
+        var rightHandDevices = new List<UnityEngine.XR.InputDevice>();
+        UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.RightHand, rightHandDevices);
+
+        if(rightHandDevices.Count == 1)
+        {
+            rightDevice = rightHandDevices[0];
+            Debug.Log(string.Format("Device name '{0}' with role '{1}'", rightDevice.name, rightDevice.role.ToString()));
         }
+        else if(rightHandDevices.Count > 1)
+            Debug.Log("Found more than one left hand!");
     }
 
     void Update()
@@ -60,10 +67,11 @@ public class SimpleShoot : MonoBehaviour
         if (timer > shootTime)
         {
             bool triggerValue;
-            if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue)
+            bool secondTriggerValue;
+            if (leftDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue ||
+                rightDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out secondTriggerValue) && secondTriggerValue)
             {
                 Debug.Log("Trigger button is pressed.");
-
                 Shoot();
                 timer = 0;
             }
