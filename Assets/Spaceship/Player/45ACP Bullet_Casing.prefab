@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 7147410280324793224}
   - component: {fileID: 6612025412149823873}
   - component: {fileID: 2009515866196400935}
+  - component: {fileID: 5374264217874260937}
   m_Layer: 9
   m_Name: 45ACP Bullet_Casing
   m_TagString: Untagged
@@ -144,6 +145,22 @@ CapsuleCollider:
   m_Height: 0.0001
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0.01}
+--- !u!114 &5374264217874260937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2503632656929731332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab7e84adf79a2f4396a3004af11c87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 10
+  MinPower: 100
+  MaxPower: 500
+  ExplosionVFX: {fileID: 5793244834800139769, guid: 6927eb01a554061498ed505cb9c6c2e0, type: 3}
 --- !u!1 &3639118274913837228
 GameObject:
   m_ObjectHideFlags: 0
