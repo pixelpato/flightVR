@@ -42,8 +42,8 @@ public class NewPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         if (rb == null)
             Debug.Log("rb is null");
-        GameObject shipObj = GameObject.Find("ShipSound");
-      //  shipSFX = shipObj.GetComponent<ShipSounds>();
+        GameObject shipObj = GameObject.Find("Spaceship");
+        shipSFX = shipObj.GetComponent<ShipSounds>();
     }
 
     void FixedUpdate()
@@ -52,7 +52,7 @@ public class NewPlayerController : MonoBehaviour
         SetSpeedMultiplier();
         MoveSpaceship();
         UiManager.Instance.updateSpeedText(Mathf.FloorToInt(GetSpeed()));
-        //shipSFX.volume(GetSpeed());
+        shipSFX.volume(0.25f);
     }
     private void SetMovement()
     {
@@ -63,8 +63,6 @@ public class NewPlayerController : MonoBehaviour
     {
         AddSpeedUpMultiplier();
         MultiplyForNewDirection();
-        
-        
     }
     private void MultiplyForNewDirection()
     {
