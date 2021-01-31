@@ -5063,6 +5063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac940909b661024495ad8a849339af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHP: 100
+  CurrentHP: 100
   SpeedMultiplier: 1
   Speed: 3
   heightSpeed: 2

@@ -10,6 +10,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class NewPlayerController : MonoBehaviour
 {
+
+    public float MaxHP = 100;
+    public float CurrentHP = 100;
+    
     
     //movement data
     private Rigidbody rb;
