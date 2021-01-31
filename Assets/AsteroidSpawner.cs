@@ -15,11 +15,13 @@ public class AsteroidSpawner : MonoBehaviour
     public int minForce = 10;
     public int maxForce = 20;
 
-    public int timeIntervalMin = 1;
-    public int timeIntervalMax = 3;
+    public int timeIntervalMin = 3;
+    public int timeIntervalMax = 6;
     private int _nextInterval;
     private float _timer = 0;
 
+
+    private GameObject _currentAsteroid;
 
     public Transform asteroidSpawnPoint;
     
@@ -53,13 +55,39 @@ public class AsteroidSpawner : MonoBehaviour
         Debug.Log("Asteroid: Spawn asteroid");
         var position = asteroidSpawnPoint.position;
         Vector3 spawnPos = new Vector3(position.x + Random.Range(-xOffset, xOffset), position.y+ Random.Range(0, xOffset), position.z);
-        GameObject tempAsteroid = Instantiate(asteroid, spawnPos, Quaternion.identity);
         
-        var rb = tempAsteroid.GetComponent<Rigidbody>();
+        _currentAsteroid = Instantiate(asteroid, spawnPos, Quaternion.identity);
+
+        StartCoroutine(ScaleOverTime(3));
+
+        var rb = _currentAsteroid.GetComponent<Rigidbody>();
         Vector3 force = (_targetPos - spawnPos)  * Random.Range(minForce, maxForce);
         Debug.Log("new force is " + force);
         
         if (rb != null)
             rb.AddForce(force);
+    }
+    
+    
+    
+    IEnumerator ScaleOverTime(float time)
+    {
+        Vector3 destinationScale =  _currentAsteroid.transform.localScale;
+
+        _currentAsteroid.transform.localScale = new Vector3(50, 50, 50);
+        Vector3 originalScale = _currentAsteroid.transform.localScale;
+
+        //Vector3 originalScale = _currentAsteroid.transform.localScale;
+        //Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
+         
+        float currentTime = 0.0f;
+         
+        do
+        {
+            _currentAsteroid.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
+            currentTime += Time.deltaTime;
+            yield return null;
+        } while (currentTime <= time);
+         
     }
 }
