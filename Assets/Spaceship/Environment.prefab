@@ -5127,7 +5127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   xOffset: 35
-  asteroid: {fileID: 742718660028909479, guid: 783f3714d55617543b7b22ed384610dd, type: 3}
+  asteroid: {fileID: 6782951441971536234, guid: 4f7cf4be26197f64194b73ed388ced67, type: 3}
   minForce: 5
   maxForce: 10
   timeIntervalMin: 3
