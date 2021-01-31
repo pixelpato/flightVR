@@ -5,8 +5,6 @@ using UnityEngine;
 public class ShipSounds : MonoBehaviour
 {
     // Static Accessability
-    public static ShipSounds Instance { get; private set; }
-
     public AudioSource audioSource;
 
 
