@@ -5,6 +5,10 @@ using TMPro;
 
 public class UiManager : MonoBehaviour
 {
+    
+    public NewPlayerController NewPlayerController;
+
+    
     // Static Accessability
     public static UiManager Instance { get; private set; }
 
@@ -13,6 +17,8 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI speedText;
 
+
+    
     public void updateSpeedText(int speed)
     {
         speedText.text = speed.ToString() + " m/s";
@@ -30,6 +36,8 @@ public class UiManager : MonoBehaviour
         string seconds = (matchTime % 60).ToString("00");
 
         if (timeText != null) timeText.text = string.Format("{0}:{1}", minutes, seconds);
+
+        timeText.text += "\nHP:  " + NewPlayerController.CurrentHP +" %";
     }
 
     public void IncreaseRingPoints(int currentAmount)

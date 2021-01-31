@@ -1,18 +1,30 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public NewPlayerController NewPlayerController;
+   
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.layer == 10)
+        {
+            NewPlayerController.CurrentHP -= NewPlayerController.AsteroidDamage;
+
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision other)
     {
-        
+        if (other.gameObject.layer == 10)
+        {
+            NewPlayerController.CurrentHP -= NewPlayerController.AsteroidDamage;
+
+
+        }
     }
 }

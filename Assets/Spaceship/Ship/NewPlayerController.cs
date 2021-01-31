@@ -13,6 +13,8 @@ public class NewPlayerController : MonoBehaviour
 
     public float MaxHP = 100;
     public float CurrentHP = 100;
+    public float AsteroidDamage = 10;
+    
     
     
     //movement data
@@ -22,7 +24,7 @@ public class NewPlayerController : MonoBehaviour
     public float Speed = 350;
     private Vector3 OldMovement = new Vector3(0,0,0);
     private Vector3 NewMovement = new Vector3(0,0,0);
-    private Vector3 MaxVelocity = new Vector3(15, 15, 15);
+    private Vector3 MaxVelocity = new Vector3(15, 1, 15);
     public int heightSpeed = 10;
     
     //player interaction    
@@ -36,7 +38,7 @@ public class NewPlayerController : MonoBehaviour
     public RotationButton UpButton;
     public RotationButton DownButton;
 
-    public TextMeshProUGUI TextMeshPro;
+    [FormerlySerializedAs("TextMeshPro")] public TextMeshProUGUI debugTextmesh;
     
     // Start is called before the first frame update
     void Start()
@@ -95,6 +97,14 @@ public class NewPlayerController : MonoBehaviour
     }
     private int  GetHeightSpeed()
     {
+        if (!UpButton.ButtonIsPressed && !DownButton.ButtonIsPressed)
+        {
+            if (rb.velocity.y == 0)
+                return 0;
+            if (rb.velocity.y > 0)
+                return -1; 
+            return 1;
+        }
         if (UpButton.ButtonIsPressed && !DownButton.ButtonIsPressed)
             return -heightSpeed;
         if (!UpButton.ButtonIsPressed && DownButton.ButtonIsPressed)
@@ -106,8 +116,15 @@ public class NewPlayerController : MonoBehaviour
     {
         float speed = GetSpeed();
         Vector3 updatedMovement = NewMovement * speed * Time.deltaTime;
+
+        if (MaxVelocity.x - Math.Abs(rb.velocity.x) < 0)
+            updatedMovement.x = 0;
+        if (MaxVelocity.y - Math.Abs(rb.velocity.y) < 0)
+            updatedMovement.y = 0;
+        if (MaxVelocity.z - Math.Abs(rb.velocity.z) < 0)
+            updatedMovement.z = 0;
         
-      //  TextMeshPro.text = "speed is : " + speed +"\n and multiplier is " + SpeedMultiplier + "\n new movement  " + NewMovement +"\n velocity is " + rb.velocity;
+        debugTextmesh.text = "speed is : " + speed +"\n and multiplier is " + SpeedMultiplier + "\n updated movement  " + updatedMovement +"\n velocity is " + rb.velocity;
         if (Math.Abs(rb.velocity.x) < MaxVelocity.x ||Math.Abs(rb.velocity.z) < MaxVelocity.z)
             rb.AddForce(updatedMovement);
     }

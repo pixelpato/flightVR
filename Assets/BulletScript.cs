@@ -32,6 +32,7 @@ public class BulletScript : MonoBehaviour
             
             
             GameObject fracturedStone = Instantiate(Resources.Load("StoneTwoFractured", typeof(GameObject))) as GameObject;
+            Destroy(asteroid);
             fracturedStone.transform.parent = asteroid.transform.parent;
             fracturedStone.transform.position = asteroid.transform.position;
         
@@ -39,8 +40,6 @@ public class BulletScript : MonoBehaviour
             explosion.transform.position = asteroid.transform.position;
 
             Random random = new Random();
-
-
             
             
             foreach (Transform t in fracturedStone.transform)
@@ -56,7 +55,6 @@ public class BulletScript : MonoBehaviour
             }
             //destroy fractured parts/parent object, the old asteroid and this bullet
             Destroy(fracturedStone,5f);
-            Destroy(asteroid);
             Destroy(this);
             
         }

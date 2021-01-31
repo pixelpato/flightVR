@@ -5065,6 +5065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 100
   CurrentHP: 100
+  AsteroidDamage: 10
   SpeedMultiplier: 1
   Speed: 3
   heightSpeed: 2
@@ -5074,7 +5075,7 @@ MonoBehaviour:
   shipSFX: {fileID: 0}
   UpButton: {fileID: 0}
   DownButton: {fileID: 0}
-  TextMeshPro: {fileID: 0}
+  debugTextmesh: {fileID: 0}
 --- !u!54 &436298971
 Rigidbody:
   m_ObjectHideFlags: 0

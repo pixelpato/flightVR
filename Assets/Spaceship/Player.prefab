@@ -507,8 +507,9 @@ GameObject:
   - component: {fileID: 612971596}
   - component: {fileID: 612971598}
   - component: {fileID: 612971597}
+  - component: {fileID: 612971599}
   m_Layer: 8
-  m_Name: Collider
+  m_Name: HealthController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -557,6 +558,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
+--- !u!114 &612971599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612971595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b76185f55bd4a04ba1a81c673dc5984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewPlayerController: {fileID: 0}
 --- !u!1 &817964355
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1098660998
 Transform:
   m_ObjectHideFlags: 0
@@ -3414,11 +3428,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3401015083803528527, guid: a3904d612c0cca74b890bbc54c098b20, type: 3}
   m_PrefabInstance: {fileID: 7763807004047564286}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2622084566211688615 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5754774937112225113, guid: a3904d612c0cca74b890bbc54c098b20, type: 3}
-  m_PrefabInstance: {fileID: 7763807004047564286}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4939393701936829752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401015083995678918, guid: a3904d612c0cca74b890bbc54c098b20, type: 3}
@@ -3427,5 +3436,10 @@ Transform:
 --- !u!1 &4939393702396891319 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3401015083803528521, guid: a3904d612c0cca74b890bbc54c098b20, type: 3}
+  m_PrefabInstance: {fileID: 7763807004047564286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2622084566211688615 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5754774937112225113, guid: a3904d612c0cca74b890bbc54c098b20, type: 3}
   m_PrefabInstance: {fileID: 7763807004047564286}
   m_PrefabAsset: {fileID: 0}
