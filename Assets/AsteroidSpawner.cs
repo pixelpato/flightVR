@@ -74,11 +74,8 @@ public class AsteroidSpawner : MonoBehaviour
     {
         Vector3 destinationScale =  _currentAsteroid.transform.localScale;
 
-        _currentAsteroid.transform.localScale = new Vector3(50, 50, 50);
+        _currentAsteroid.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         Vector3 originalScale = _currentAsteroid.transform.localScale;
-
-        //Vector3 originalScale = _currentAsteroid.transform.localScale;
-        //Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
          
         float currentTime = 0.0f;
          
