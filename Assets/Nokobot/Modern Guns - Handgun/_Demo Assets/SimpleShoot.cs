@@ -109,14 +109,14 @@ public class SimpleShoot : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletPrefab, barrelLocationLeft.position, barrelLocationLeft.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(barrelLocationLeft.forward * shotPower);
-            Destroy(bullet, destroyTimer +8);
+            Destroy(bullet, 5 );
             Debug.Log("nwe bullet");
 
         }else if (secondTriggerValue)
         {
             GameObject bullet = Instantiate(bulletPrefab, barrelLocationRight.position, barrelLocationRight.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(barrelLocationLeft.forward * shotPower);
-            Destroy(bullet, destroyTimer +8);
+            Destroy(bullet, 5);
             Debug.Log("nwe bullet");
 
         }

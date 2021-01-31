@@ -35,11 +35,11 @@ public class BulletScript : MonoBehaviour
             fracturedStone.transform.parent = asteroid.transform.parent;
             fracturedStone.transform.position = asteroid.transform.position;
             
-            Destroy(asteroid);
         
             GameObject explosion = Instantiate(ExplosionVFX);
             explosion.transform.position = asteroid.transform.position;
 
+            Destroy(asteroid);
             Random random = new Random();
             
             
