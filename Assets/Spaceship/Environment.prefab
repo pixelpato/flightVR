@@ -5250,6 +5250,10 @@ PrefabInstance:
       propertyPath: distanceToNextRing
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4768112549026949416, guid: 8fdd050733817fa4088232f75e0afc80, type: 3}
+      propertyPath: ringPF
+      value: 
+      objectReference: {fileID: 1498087385881570823, guid: 8a0df7db60824bc47a30c871606ffcb6, type: 3}
     - target: {fileID: 4768112549026949417, guid: 8fdd050733817fa4088232f75e0afc80, type: 3}
       propertyPath: m_Name
       value: Ring Spawner
