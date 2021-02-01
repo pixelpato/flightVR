@@ -39,6 +39,7 @@ public class GameManagerHelper : MonoBehaviour
         {
             currentMatchLength += Time.deltaTime;
             UiManager.Instance.UpdateTimer(currentMatchLength);
+            UiManager.Instance.UpdateHull();
         }
         if (ringsScored == ringsToScore)
         {
