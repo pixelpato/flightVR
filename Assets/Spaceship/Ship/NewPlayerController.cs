@@ -35,8 +35,8 @@ public class NewPlayerController : MonoBehaviour
     public ShipSounds shipSFX;
     private XRGrabInteractable speedTriggerInteract; 
 
-    public RotationButton UpButton;
-    public RotationButton DownButton;
+    public UpDownButton UpButton;
+    public UpDownButton DownButton;
 
     [FormerlySerializedAs("TextMeshPro")] public TextMeshProUGUI debugTextmesh;
     
@@ -97,17 +97,17 @@ public class NewPlayerController : MonoBehaviour
     }
     private int  GetHeightSpeed()
     {
-        if (!UpButton.ButtonIsPressed && !DownButton.ButtonIsPressed)
+        if (!UpButton.isPressed && !DownButton.isPressed)
         {
             if (rb.velocity.y == 0)
                 return 0;
             if (rb.velocity.y > 0)
-                return -1; 
-            return 1;
+                return -2; 
+            return 2;
         }
-        if (UpButton.ButtonIsPressed && !DownButton.ButtonIsPressed)
+        if (UpButton.isPressed && !DownButton.isPressed)
             return -heightSpeed;
-        if (!UpButton.ButtonIsPressed && DownButton.ButtonIsPressed)
+        if (!UpButton.isPressed && DownButton.isPressed)
             return heightSpeed;
 
         return 0;
