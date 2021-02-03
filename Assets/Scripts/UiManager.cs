@@ -41,11 +41,12 @@ public class UiManager : MonoBehaviour
 
     public void UpdateHull()
     {
-        hullText.text += "Hull: " + NewPlayerController.CurrentHP + "%";
+        hullText.text = "Hull: " + NewPlayerController.CurrentHP + "%";
     }
 
     public void IncreaseRingPoints(int currentAmount)
     {
+        
         if (ringPointsText != null) ringPointsText.text = "Rings: " + currentAmount + "/ " + GameManagerHelper.Instance.ringsToScore;
     }
 

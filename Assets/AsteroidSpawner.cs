@@ -45,14 +45,12 @@ public class AsteroidSpawner : MonoBehaviour
 
     private void ResetTimer()
     {
-        Debug.Log("Asteroid: reset timer");
         _timer = 0;
         _nextInterval = Random.Range(timeIntervalMin, timeIntervalMax);
     }
 
     private void SpawnAsteroid()
     {
-        Debug.Log("Asteroid: Spawn asteroid");
         var position = asteroidSpawnPoint.position;
         Vector3 spawnPos = new Vector3(position.x + Random.Range(-xOffset, xOffset), position.y+ Random.Range(0, xOffset), position.z);
         
@@ -62,7 +60,6 @@ public class AsteroidSpawner : MonoBehaviour
 
         var rb = _currentAsteroid.GetComponent<Rigidbody>();
         Vector3 force = (_targetPos - spawnPos)  * Random.Range(minForce, maxForce);
-        Debug.Log("new force is " + force);
         
         if (rb != null)
             rb.AddForce(force);

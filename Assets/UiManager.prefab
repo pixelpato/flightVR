@@ -419,3 +419,4 @@ MonoBehaviour:
   ringPointsText: {fileID: 0}
   timeText: {fileID: 0}
   speedText: {fileID: 0}
+  hullText: {fileID: 0}

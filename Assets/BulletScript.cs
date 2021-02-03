@@ -39,7 +39,6 @@ public class BulletScript : MonoBehaviour
             foreach (Transform t in asteroid.transform)
             {
                 
-                Debug.Log("t name is " + t.gameObject.name);
                 //add components
                 t.gameObject.AddComponent<Rigidbody>();
                 Rigidbody rb = t.GetComponent<Rigidbody>();
@@ -54,7 +53,6 @@ public class BulletScript : MonoBehaviour
                 {
                     Random random = new Random();
                     rb.AddExplosionForce(random.Next(MinPower,MaxPower),asteroid.transform.position,Radius);
-                    Debug.Log("adding force: " + rb.velocity + " with random + " + random.Next(MinPower,MaxPower));
                 }
                 Destroy(t.gameObject,3f);
             }

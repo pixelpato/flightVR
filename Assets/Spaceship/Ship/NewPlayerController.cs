@@ -32,7 +32,7 @@ public class NewPlayerController : MonoBehaviour
     
     public GameObject SpeedTrigger;
     public GameObject SpeedTriggerStartPoint;
-    public ShipSounds shipSFX;
+    private ShipSounds shipSFX;
     private XRGrabInteractable speedTriggerInteract; 
 
     public UpDownButton UpButton;
@@ -49,7 +49,16 @@ public class NewPlayerController : MonoBehaviour
         if (rb == null)
             Debug.Log("rb is null");
         GameObject shipObj = GameObject.Find("Spaceship");
-        shipSFX = shipObj.GetComponent<ShipSounds>();
+
+        try
+        {
+            shipSFX = shipObj.GetComponent<ShipSounds>();
+            shipSFX.volume(0.25f);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
 
     void FixedUpdate()
@@ -58,7 +67,7 @@ public class NewPlayerController : MonoBehaviour
         SetSpeedMultiplier();
         MoveSpaceship();
         UiManager.Instance.updateSpeedText(Mathf.FloorToInt(GetSpeed()));
-        shipSFX.volume(0.25f);
+        
     }
     private void SetMovement()
     {
@@ -72,16 +81,15 @@ public class NewPlayerController : MonoBehaviour
     }
     private void MultiplyForNewDirection()
     {
-        //TextMeshPro.text = " Old movement is :  " + OldMovement + "\n New movement is : " + NewMovement;
          if (OldMovement.x < 0 && NewMovement.x > 0 || OldMovement.x > 0 && NewMovement.x < 0 ||
             OldMovement.z < 0 && NewMovement.z > 0 || OldMovement.z > 0 && NewMovement.z < 0)
         {
             if(Math.Abs(rb.velocity.x) > 6 ||Math.Abs(rb.velocity.z) > 6)
                 SpeedMultiplier += 12;
             else if(Math.Abs(rb.velocity.x) > 3 ||Math.Abs(rb.velocity.z) > 3)
-                SpeedMultiplier += 8;
+                SpeedMultiplier += 6;
             else
-                SpeedMultiplier += 5;
+                SpeedMultiplier += 3;
         }
         else
             OldMovement = NewMovement;
@@ -89,11 +97,11 @@ public class NewPlayerController : MonoBehaviour
     private void AddSpeedUpMultiplier()
     {
             if (Math.Abs(rb.velocity.x) < 3 || Math.Abs(rb.velocity.z) < 3)
-                SpeedMultiplier =4;
+                SpeedMultiplier =5;
             if (Math.Abs(rb.velocity.x) < 5 || Math.Abs(rb.velocity.z) < 5)
                 SpeedMultiplier = 3; 
             if (Math.Abs(rb.velocity.x) >10 || Math.Abs(rb.velocity.z) > 10)
-                SpeedMultiplier = 2;
+                SpeedMultiplier = 1;
     }
     private int  GetHeightSpeed()
     {
