@@ -66,7 +66,7 @@ public class NewPlayerController : MonoBehaviour
         SetMovement();
         SetSpeedMultiplier();
         MoveSpaceship();
-        UiManager.Instance.updateSpeedText(Mathf.FloorToInt(GetSpeed()));
+        UiManager.Instance.updateSpeedText(Mathf.FloorToInt(rb.velocity.magnitude));
         
     }
     private void SetMovement()
