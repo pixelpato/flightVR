@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.SceneManagement;
 
 [AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
 public class SimpleShoot : MonoBehaviour
@@ -24,8 +25,10 @@ public class SimpleShoot : MonoBehaviour
     UnityEngine.XR.InputDevice leftDevice;
     UnityEngine.XR.InputDevice rightDevice;
 
-    bool triggerValue;
-    bool secondTriggerValue;
+    private bool triggerValue;
+    private bool secondTriggerValue;
+    private bool primaryValue;
+    private bool secondaryValue;
     
     
     void Start()
@@ -78,6 +81,14 @@ public class SimpleShoot : MonoBehaviour
                 Shoot();
                 timer = 0;
             }
+            
+            if (rightDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out primaryValue) && primaryValue &&
+                rightDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out secondaryValue) && secondaryValue)
+            {
+                Scene scene = SceneManager. GetActiveScene();
+                SceneManager. LoadScene(scene.name);
+            }
+            
         }
     }
 
@@ -115,7 +126,7 @@ public class SimpleShoot : MonoBehaviour
         }else if (secondTriggerValue)
         {
             GameObject bullet = Instantiate(bulletPrefab, barrelLocationRight.position, barrelLocationRight.rotation);
-            bullet.GetComponent<Rigidbody>().AddForce(barrelLocationLeft.forward * shotPower);
+            bullet.GetComponent<Rigidbody>().AddForce(barrelLocationRight.forward * shotPower);
             Destroy(bullet, 5);
             Debug.Log("nwe bullet");
 

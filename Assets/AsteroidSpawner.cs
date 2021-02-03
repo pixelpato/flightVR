@@ -15,7 +15,7 @@ public class AsteroidSpawner : MonoBehaviour
     public int minForce = 10;
     public int maxForce = 20;
 
-    public int timeIntervalMin = 3;
+    public int timeIntervalMin = 1;
     public int timeIntervalMax = 6;
     private int _nextInterval;
     private float _timer = 0;
